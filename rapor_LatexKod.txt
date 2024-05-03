@@ -1,0 +1,138 @@
+\documentclass[a4paper,12 pt]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage[pdftex]{graphicx}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage{mathptmx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+    \usepackage{abstract}
+\renewcommand{\abstractname}{}    % clear the title
+\renewcommand{\absnamepos}{empty} % originally center
+\begin{document}
+
+\title{Denizlerde Kaynak Arama Operasyonlarında Optimal Alan Bölümleme Raporu\\
+}
+
+\author{\IEEEauthorblockN{Alperen Karacan}\\
+\IEEEauthorblockA{\textit{Öğrenci No: 210201096}} \\
+
+}
+
+\maketitle
+ 
+\section{Özet}
+Bu proje sayesinde  temel programlama ile grafik çizdirme bilgilerinin
+öğrenilmesi ve pekiştirilmesi,Karşılaşılacak problemler karşısında problem çözme becerisinin gelişimi amaçlanmaktadır.
+
+
+
+\section{Giriş}
+Denizlerdeki doğal kaynakların aranması ve çıkarılması.Bu projenin amacı, doğal kaynak arama şirketlerinin arama bölgelerini en uygun şekilde bölerek maksimum kar elde etmelerini sağlayacak bir yazılım geliştirmektir. Projede C programlama dili kullanılmıştır ve yazılım iki ana aşamadan oluşur:koordinatları verilen bir şeklin alanının hesaplanması ve rezerv değerinin bulunması ve bu alanın optimal karesel parçalara bölünmesi.Her iki aşama da belirli kısıtlamalar altında gerçekleştirilir ve sonuçlar hem görsel olarak hemde sayısal değerler gösterilerek kullanıcıya sunulur.
+
+\section{Projeyi Yaparken Kullanılan Yöntem ve Kurallar}
+Bu bölümde: Aşamaları,Kullanılan Algoritmalar ve Hesaplama Yöntemlerini,Kullandığım Kütüphaneleri Yazacağım.
+\subsection{1.Aşama: Rezerv Bölgesinin Alanı ve Görselleştirilmesi}
+\begin{itemize}
+    \item Veri Toplama: Uygulama, kullanıcıdan txt ile  erişilen  koordinat verilerini toplar. Kullanıcı, hangi satırın verilerinin işleneceğini seçer.
+    \item Görselleştirme: Seçilen satırdaki koordinatlar, bir kapalı şeklin oluşturulması için birleştirilir. Bu işlem için temel grafik çizim komutları kullanılır.
+    \item Alan Hesaplama: Kapalı şeklin alanı hesaplanır. Bu hesaplama, şeklin kapsadığı birim karelerin sayısını toplayarak ya da matematiksel bir formül kullanarak yapılabilir.
+    \item Rezerv Değerinin Hesaplanması: Elde edilen alan değeri 10 ile çarpılarak kaynak rezerv miktarı elde edilir. Bu değer, şirketin arama operasyonları için potansiyel değeri temsil eder.
+\end{itemize}
+\subsection{2. Aşama: Optimal Karesel Parçalara Bölünmesi}
+\begin{itemize}
+    \item Birim Maliyetlerin Belirlenmesi: Kullanıcı, birim sondaj ve platform maliyetlerini belirler. Bu değerler 1 ile 10 arasında değişebilir ve toplam maliyet hesaplamalarında kullanılır.
+    \item Parçalara Ayırma: Rezerv alanı, belirlenen kısıtlamalara uygun olarak karesel parçalara bölünür. Parçaların boyutları 1x1, 2x2, 4x4, 8x8 ve 16x16 olarak sınırlandırılmıştır.
+    \item Komşuluk Kuralı: Her karesel alanın komşuları, kendi boyutunun bir büyüğü ya da bir küçüğü olacak şekilde ayarlanır.
+    \item Maliyet Hesaplaması: Bölümlenmiş her karesel parçanın sondaj ve platform maliyeti hesaplanır.
+    \item Optimal Çözümün Bulunması: Toplam maliyeti minimize eden parçalara ayrılma stratejisi belirlenir. Bu süreçte, hem karesel parçaların toplam alanı hem de gerekli platform sayısı en aza indirgenir.
+    \item Yararlanılan Grafik Kütüphanesi : graphics.h kütüphanesi kullanılmıştır.
+\end{itemize}
+\section{Deneysel Sonuçlar}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=90mm]{1.png}
+\caption{Kullanıcıdan Verileri Alma}
+\label{fig:verial}
+\end{figure}
+
+Görsel \ref{fig:verial}'deki konsol ekranında da gösterildiği gibi kullanıcıdan birim sondaj maliyeti,birim platform maliyeti ve txt den okunan verideki şekillerin listesi gösterilmiştir.Kullanıcı bunlara kendi karar vererek projenin gidişatına yön verebilecektir.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=90mm]{2.png}
+\caption{Şekil Çizdirme}
+\label{fig:ciz}
+\end{figure}
+
+Görsel \ref{fig:ciz}'de görüleceği üzere kullanıcı çizilmesini istediği şekli girmiştir ve şekil hazırlanmıştır
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=90mm]{3.png}
+\caption{Sonuç Ekranı}
+\label{fig:sonuc}
+\end{figure}
+
+Görsel \ref{fig:sonuc}'deki kısımda ise çizdirilen şeklin rezerv değeri,Toplam platform masrafı,Toplam sondaj masrafı,Toplam maliyet ve Kar yazmaktadır.
+
+
+\end{itemize} 
+\newpage
+\section{\\Projenin Kısıtları}
+\begin{itemize}
+\item Uygulama ilk çalıştırıldığında .txt den erişilen sayfada kaçıncı satırdaki
+koordinat noktalarının çizdirileceği, birim sondaj maliyeti ve birim platform
+maliyeti kullanıcıdan istenmelidir. (Yalnızca tek bir satırdaki noktalar için çizim
+işlemi yapılmalıdır) 
+\item Programda iki ayrı çizim yapılmalıdır.
+\item İlk çizimde kullanıcıdan istenen satırdaki noktaların oluşturduğu rezerv bölgesi
+çizdirilerek kullanıcıya görsel olarak gösterilmelidir.
+\item Çizdirilen alanların rezerv değer miktarı hesaplanarak kullanıcıya gösterilmelidir.
+(Rezerv değeri = rezerv bölgelerinin yüzey alanı x 10) (Birden fazla rezerv bölgesi
+içeren durumlarda toplam rezerv değeri kullanıcıya gösterilmelidir)
+\item İkinci çizimde kısıtlara uygun olarak minimum toplam maliyetli durum için
+bölümleme işlemi yapılmalı ve karesel alanlara ayrılmış rezerv alanı çizdirilerek
+kullanıcıya görsel olarak gösterilmelidir. Farklı boyuttaki karesel alanlar farklı
+renklerle boyanarak gösterilmelidir.
+
+\item İkinci çizim sonucunda kullanıcıya toplam platform sayısı toplam sondaj sayısı,
+toplam platform maliyeti, toplam sondaj maliyeti, toplam maliyet (=toplam sondaj
+maliyeti + toplam platform maliyeti) ve kâr miktarı (=rezerv değeri-toplam maliyet)
+kullanıcıya gösterilmelidir.
+
+    
+\end{itemize}
+\section{\\Sonuç}
+\begin{itemize}
+\item Bu projenin amacı, doğal kaynak arama ve çıkarım işlemleri için maliyet planlamaktır.Proje iki aşamalıdır,rezerv bölgelerinin doğru bir şekilde tespit edilmesi ve bu bölgelerin en az maliyetle nasıl bölünebileceğinin araştırılması istenmiştir. Proje, programlama becerilerimizin gelişmesi ve C dilinde alışık olmadığım grafik çizim tekniklerinin öğrenilmesine ve problem çözme yeteniğimin artması için gayet güzel bir uygulama fırsatı sundu.
+\item 1. Aşama İncelemesi:
+Rezerv bölgelerinin tespiti ve görselleştirilmesi hedeflendi, verilen koordinatlar doğru bir şekilde birleştirilip kapalı bir alan oluşturulmuştur. Alan hesaplamaları ve rezerv değerleri proje pdf ine yakın değerlerde çıkmıştır.
+\item 2. Aşama İncelemesi:
+Optimal bölme işleminde ilk denediğimde birim kareleri işaretleyerek tutmaya çalıştım ama kareleri bölerken projeyi çalıştırmak istediğimde kasma ve kapanma sorununu yaşadım,Sonra birkaç algoritma denedim ama başarız olduğum için bölme işlemlerini yapamadım.
+\item Zorluklar ve Öğrenilen Dersler:
+Karşılaşılan zorluklar arasında verileri işleme, algoritma tasarımı ve kullanıcının girdiklerine bağlı değişikliklerin takibi vardır.
+
+\end{itemize}
+\section*{Kaynakça}
+https://stackoverflow.com
+https://chat.openai.com/chat
+https://www.youtube.com
+
+\newpage
+\section{\\Akış Diyagramı}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=40mm]{4.jpg}
+\end{figure}
+
+
+
+\end{document}
